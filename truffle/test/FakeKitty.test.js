@@ -1,16 +1,16 @@
-const FakeKitty = artifacts.require("FakeKitty.sol");
+const TheBoredApesFNFT= artifacts.require("TheBoredApesFNFT.sol");
 
-contract('FakeKitty', async (accounts) => {
+contract('THEBOREDAPESFNFT', async (accounts) => {
 
-	let fakeKitty;
+	let babyapes;
 
 	beforeEach(async () => {
-		fakeKitty = await FakeKitty.new();
+		TheBoredApesFNFT = await TheBoredApesFNFT.new();
 	});
 
-	it("creates fake uri", async () => {
-		await fakeKitty.mint(18);
-		assert.equal("https://img.cryptokitties.co/0x06012c8cf97bead5deae237070f9587f8e7a266d/18.svg", await fakeKitty.tokenURI(18));
+	it("creates uri", async () => {
+		await TheBoredApesFNFT.mint(18);
+		assert.equal("https://d1iczm3wxxz9zd.cloudfront.net/2597b886-5b20-44bd-ad3a-bddde842a458/000000-0000000000/11529368692910206949989499695970252420985560916471671966680266623018420295571/ITEM_PREVIEW1.png", await TheBoredApesFNFT.tokenURI(18));
 	});
 
 });
