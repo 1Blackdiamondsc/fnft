@@ -7,7 +7,7 @@ import "./strings.sol";
 contract FakeKitty is ERC721Token {
     using strings for *;
 
-    constructor() ERC721Token("FakeKitty", "FKT") {}
+    constructor() ERC721Token("THEBOREDAPESFNFT", "TBAF") {}
 
     function mint(uint id) public {
         _mint(msg.sender, id);
