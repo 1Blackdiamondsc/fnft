@@ -1,5 +1,5 @@
 const { assertThrowsAsync, balance} = require('./helpers');
-const FakeKitty = artifacts.require("FakeKitty.sol");
+const TheBoredApesFNFT = artifacts.require("TheBoredApesFNFT.sol");
 const FungibleNonFungibleToken = artifacts.require("FungibleNonFungibleToken.sol");
 
 contract('FungibleNonFungibleToken', async (accounts) => {
@@ -10,15 +10,15 @@ contract('FungibleNonFungibleToken', async (accounts) => {
 	let kittyId = 18;
 
 	beforeEach(async () => {
-		asset = await FakeKitty.new();
+		asset = await TheBoredApesFNFT.new();
 		assert.ok(asset);
-		await asset.mint(kittyId);
-		assert.equal(me, await asset.ownerOf(kittyId));
+		await asset.mint(babyapesId);
+		assert.equal(me, await asset.ownerOf(babyapesId));
 		fnft = await FungibleNonFungibleToken.new(
 				"Fnft", "FNFT",
 				[me, alice, bob],
 				[1000, 1000, 1000],
-				asset.address, kittyId
+				asset.address, babyapesId
 		);
 	});
 
@@ -55,7 +55,7 @@ contract('FungibleNonFungibleToken', async (accounts) => {
 		});
 
 		it("NFT can be transfered", async () => {
-			await asset.approve(fnft.address, kittyId);
+			await asset.approve(fnft.address, babyapesId);
 			await fnft.depositAsset();
 			assert.equal(fnft.address, await asset.ownerOf(kittyId));
 		});
@@ -69,7 +69,7 @@ contract('FungibleNonFungibleToken', async (accounts) => {
 
 		beforeEach(async () => {
 			await fnft.send(1);
-			await asset.approve(fnft.address, kittyId);
+			await asset.approve(fnft.address, babyapesId);
 			await fnft.depositAsset();
 		});
 
@@ -97,7 +97,7 @@ contract('FungibleNonFungibleToken', async (accounts) => {
 
 		beforeEach(async () => {
 			await fnft.send(1);
-			await asset.approve(fnft.address, kittyId);
+			await asset.approve(fnft.address, babyapesId);
 			await fnft.depositAsset();
 			await fnft.approveSale();
 			await fnft.approveSale({from: alice});
